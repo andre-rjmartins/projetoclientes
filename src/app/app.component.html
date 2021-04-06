@@ -1,0 +1,23 @@
+<div class="container mt-4">
+
+  <div class="row">
+    <div class="col-md-6">
+      <h3>Sistema de Controle de Clientes</h3>
+      <p>Aplicação desenvolvida em Angular e integrado com Spring REST API</p>
+    </div>
+    <div class="col-md-6 text-end">
+      <a routerLink="cadastro-clientes" class="btn btn-light">
+        Cadastrar Clientes
+      </a>
+      &nbsp;
+      <a routerLink="consulta-clientes" class="btn btn-light">
+        Consultar Clientes
+      </a>
+    </div>
+  </div>
+  <hr>
+
+  <!-- local onde são carregados os conteúdos dos componentes -->
+  <router-outlet></router-outlet>
+
+</div>

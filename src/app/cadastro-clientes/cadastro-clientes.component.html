@@ -1,0 +1,33 @@
+<div>
+
+    <h5>Cadastro de Clientes</h5>
+    <p>Preencha os campos abaixo para incluir um cliente.</p>
+
+    <div class="row">
+        <div class="col-md-4">
+
+            <form #formCadastro="ngForm" (submit)="cadastrarCliente(formCadastro)" autocomplete="off">
+
+                <label>Nome do Cliente:</label>
+                <input type="text" name="nome" id="nome" ngModel class="form-control" placeholder="Ex: João da Silva">
+                <br>
+
+                <label>Email:</label>
+                <input type="text" name="email" id="email" ngModel class="form-control" placeholder="Ex: joaosilva@gmail.com">
+                <br>
+
+                <label>CPF:</label>
+                <input type="text" name="cpf" id="cpf" ngModel class="form-control" placeholder="Ex: 12345678900">
+                <br>
+
+                <input type="submit" value="Cadastrar Cliente" class="btn btn-success">
+            </form>
+
+        </div>
+    </div>
+
+    <div class="mt-4">
+        <h6>{{mensagem}}</h6>
+    </div>
+
+</div>

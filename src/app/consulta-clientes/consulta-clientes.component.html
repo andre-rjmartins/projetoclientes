@@ -1,0 +1,139 @@
+<div>
+
+    <h5>Consulta de Clientes</h5>
+    <p>Listagem de clientes cadastrados na aplicação</p>
+
+    <table class="table table-sm table-hover table-light table-striped">
+
+        <thead>
+            <tr>
+                <th>Nome do Cliente</th>
+                <th>Email</th>
+                <th>CPF</th>
+                <th>Operações</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr *ngFor="let item of listagemClientes">
+                <td>{{item.nome}}</td>
+                <td>{{item.email}}</td>
+                <td>{{item.cpf}}</td>
+                <td>
+                    <button data-bs-target="#janela_edicao"
+                            data-bs-toggle="modal"
+                            (click)="obterCliente(item.idCliente)"
+                            class="btn btn-primary">
+                        Atualizar
+                    </button>
+                    &nbsp;
+                    <button data-bs-target="#janela_exclusao"
+                            data-bs-toggle="modal"
+                            (click)="obterCliente(item.idCliente)"
+                            class="btn btn-danger">
+                        Excluir
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+
+        <tfoot>
+            <tr>
+                <td colspan="4">Quantidade de registros: {{listagemClientes.length}}</td>
+            </tr>
+        </tfoot>
+    </table>
+
+
+</div>
+
+<!-- janela de edição de clientes -->
+<div id="janela_edicao" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h5 class="modal-title text-white">Atualizar Cliente</h5>
+            </div>
+            <div class="modal-body">
+
+                <form #formEdicao="ngForm" (submit)="atualizarCliente(formEdicao)">
+
+                    <!-- campo oculto -->
+                    <input type="hidden" name="idCliente" [(ngModel)]="cliente.idCliente">
+
+                    <label>Nome do Cliente:</label>
+                    <input type="text" name="nome" id="nome" class="form-control" 
+                            placeholder="Ex: João da Silva" 
+                            [(ngModel)]="cliente.nome">
+                    <br>
+
+                    <label>Email:</label>
+                    <input type="text" name="email" id="email" class="form-control readonly" 
+                            readonly
+                            placeholder="Ex: joaosilva@gmail.com" 
+                            [(ngModel)]="cliente.email">
+                    <br>
+
+                    <label>CPF:</label>
+                    <input type="text" name="cpf" id="cpf" class="form-control readonly" 
+                            readonly
+                            placeholder="Ex: 12345678900" 
+                            [(ngModel)]="cliente.cpf">
+                    <br>
+
+                    <div class="text-end">
+                        <button class="btn btn-secondary" data-bs-dismiss="modal">Fechar Janela</button>
+                        &nbsp;
+                        <input type="submit" value="Salvar Alterações" class="btn btn-primary">
+                    </div>
+
+                    <div class="mt-3">
+                        <h6>{{mensagem_edicao}}</h6>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Janela de exclusão de clientes -->
+<div id="janela_exclusao" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-danger">
+                <h5 class="modal-title text-white">Excluir Cliente</h5>
+            </div>
+            <div class="modal-body">
+
+                Deseja realmente exlcuir o cliente selecionado?
+                <hr>
+
+                <div>
+                    Nome do Cliente: <strong>{{cliente.nome}}</strong>
+                </div>
+
+                <div>
+                    Email: <strong>{{cliente.email}}</strong>
+                </div>
+
+                <div>
+                    CPF: <strong>{{cliente.cpf}}</strong>
+                </div>
+                <hr>
+
+                <div class="text-end">
+                    <button class="btn btn-secondary" data-bs-dismiss="modal">Fechar Janela</button>
+                    &nbsp;
+                    <button class="btn btn-danger" (click)="excluirCliente(cliente.idCliente)">Confirmar Exclusão</button>
+                </div>
+
+                <div class="mt-3">
+                    <h6>{{mensagem_exclusao}}</h6>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
